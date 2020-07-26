@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <title>Login</title>
+    <style>
+        body{
+            background-image:url("https://ak.picdn.net/shutterstock/videos/10187165/thumb/3.jpg");
+            background-repeat:no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+        }
+        .jumbotron{
+            position:absolute;
+            bottom:0;
+            left:0;
+            }
+
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="page-header">
+        <h1>Login Page</h1>
+    </div>
+    <div class="content">
+        <form class="form-horizontal" action="{{ url_for('userpage') }}" method="post">
+            <div class="form-group">
+                <label  for="username">Username:</label>
+                <div>
+                    <input type="text" name="username" id="username" placeholder="Username">
+                </div>
+            </div>
+            <div class="form-group">
+                    <label class="control-label col-sm-2" for="pwd">Password:</label>
+                    <div class="col-sm-10">
+                        <input type="password" id="pwd" name="password" placeholder="Password">
+                    </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <div class="checkbox">
+                        <label><input type="checkbox"> Remember me</label>
+                     </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="">
+                    <input type="submit"  value="Submit">
+                </div>
+            </div>
+        </form>
+
+        <p class="text-warning">{{message}}</p>
+    </div>
+    <div class="jumbotron">
+        <a href="{{ url_for('signup')}}">Signup page</a>
+        <br>
+        <p><b><i>Welcome</i></b> to <mark>BOOK'SVIEW</mark>, this site helps in viewing book's review and posting reviews.The site works with https://www.goodreads.com/api ,this site helps us in getting books review.This site has its own api just use get request for /api/isbn where isbn is isbn number of the book.</isbn> </p>
+    </div>
+</div>
+</body>
+</html>

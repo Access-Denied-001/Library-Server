@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User's profile</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+        body{
+            margin:0;
+            margin-left:-15%;
+            padding:4px;
+            background-image:url("https://ak.picdn.net/shutterstock/videos/10187165/thumb/3.jpg");
+            background-repeat:no-repeat;
+            background-size:cover;
+        }
+        .logoutbar{
+            position:absolute;
+            top:10px;
+            right:10px;
+        }
+        .searchportion{
+            position:absolute;
+            top:37%;
+            right:0.2%;
+            background-color:#F76120;
+            padding:30px;
+            padding-top:80px;
+            border-radius:10px;
+        }
+        .user{
+            position:absolute;
+            top:50%
+            left:0;
+            background-color:#F76120;}
+        .jumbotron{
+            background-color:#F76120;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <section class="searchportion" style="height:70%;width:25%">
+
+    <form action="{{ url_for('booksearch') }}" method="post" class="form-horizontal">
+        <div class="form-group">
+            <label for="title" class="control-label col-sm-2">Title:</label>
+            <div class="col-sm-10">
+                <input type="search" id="title" name="title">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="author" class="control-label col-sm-2">Author:</label>
+            <div class="col-sm-10">
+                <input type="search" id="author" name="author">
+            </div>
+         </div>
+        <div class="form-group">
+            <label for="year" class="control-label col-sm-2">Year:</label>
+            <div class="col-sm-10">
+                <input type="search" id="year" name="year">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="isbn" class="control-label col-sm-2">ISBN:</label>
+            <div class="col-sm-10">
+                <input type="search" id="isbn" name="isbn">
+            </div>
+         </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <a href="{{ url_for('booksearch') }}"><input type="submit" class="bt btn-info" value="Search"></a>
+            </div>
+        </div>
+    </form>
+
+
+    </section>
+    <div class="jumbotron" style="height:10%;width:60%;background-color:#F76120" >
+        <p class="page-header" style="font-size:25px"><b>{{username}}'s Profile</b></p>
+    </div>
+    <div class="jumbotron" style="height:70%;width:34%">
+        <label for="usrname">Username:</label>
+        <p id="usrname">{{username}}</p>
+        <label for="usrid">user's id:</label>
+        <p id="usrid">{{user_id}}</p>
+        <label for="mailid">E-mail:</label>
+        <p id="mailid">{{user_mail}}</p>
+        <label for="date">Date:</label>
+        <P id="date">{{date.day}}/{{date.month}}/{{date.year}}</P>
+        <label for="time">Time:</label>
+        <p id="time">{{time.hour}}:{{time.minute}}:{{time.second}}</p>
+    </div>
+    <div class="jumbotron" style="background-color:white;width:44%;position:absolute;top:37%;left:30%">
+        <p>{{message}}</p>
+    </div>
+
+    <div class="logoutbar">
+    	<a href="{{ url_for('logout') }}"><input type="button" style="background-color:#F76120;height:35px" class="bt btn-info" value="Logout"></a>
+    </div>
+</div>
+</body>
+</html>

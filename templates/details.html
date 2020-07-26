@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Book</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+        .logoutbar{
+            position:absolute;
+            top:10px;
+            right:10px;
+        }
+        .checked {
+            color: orange;
+        }
+        .rating-wrapper{
+            display:inline-block;
+            width:100px;
+            cursor:pointer;
+            }
+        .reviewhandler{
+            position:absolute;
+            top:10%;
+            right:0.3%;
+            background-color:#F76120;
+            padding:40px;
+            padding-right:0px;
+            border-radius:10px;
+            width:40%;
+        }
+        body{
+            margin:0;
+            margin-left:-15%;
+            padding:4px;
+            background-image:url("https://ak.picdn.net/shutterstock/videos/10187165/thumb/3.jpg");
+            background-repeat:no-repeat;
+            background-size:cover;
+        }
+        .container{
+            background-color:#F76120;
+            }
+        .books{
+            position:absolute;
+            top:15%;
+            left:0.2%;
+            background-color:#F76120;
+            padding:30px;
+            padding-top:30px;
+            border-radius:10px;}
+        .reviews{
+            position:absolute;
+            top:15%;
+            left:21%;
+            background-color:#F76120;
+            border-radius:10px;
+            padding:20px;
+            padding-top:30px;
+            width:37%;
+            }
+
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="books">
+        <label for="title">Title:</label>
+            <p id="title">{{book.title}}</p>
+        <label for="author">Author:</label>
+            <p id="author">{{book.author}}</p>
+        <label for="year">Publication Year:</label>
+            <p id="year">{{book.year}}</p>
+        <label for="isbn">ISBN Number:</label>
+            <p id="isbn">{{book.isbn}}</p>
+        <label for="average_rating">Average Rating out of 5:</label>
+            <p id="average_rating">{{average}}</p>
+        <label for="number_ratings">Total number of reviews posted:</label>
+            <p id="number_ratings">{{number}}</p>
+    </div>
+</div>
+<div class="container" >
+    <section class="reviewhandler">
+    <form action="{{url_for('submission',bid=book.id)}}" method="post" class="form-horizontals">
+        <div class="form-group">
+                <label style="left:15%">Rate this book:</label>
+                    <div class="col-sm-10">
+                        <input type="radio" name="checkbox" value="1">
+                        <input type="radio" name="checkbox" value="2">
+                        <input type="radio" name="checkbox" value="3">
+                        <input type="radio" name="checkbox" value="4">
+                        <input type="radio" name="checkbox" value="5">
+            </div>
+        </div>
+        <div class="form-group">
+
+             <label for="comments" style="left:15%" >Write Your views about this book:</label>
+                 <div class="col-sm-10">
+                     <textarea name="comment" id="comments" cols="40" rows="10"></textarea>
+                  </div>
+         </div>
+         <div class="form-group">
+             <div class="col-sm-offset-2 col-sm-10">
+                <input type="submit" value="Submit" class="btn btn-info">
+             </div>
+         </div>
+
+    </form>
+    </section>
+</div>
+<div class="container" style="position:absolute;left:0.2%;height:13%;width:58%;border-radius:10px;background-color:#F76120" >
+    <p class="page-header" style="position:absolute;top:-2%"><a href="{{ url_for('profile')}}"><input type="submit"  value="Profile" class="btn btn-info"></a>           <b>This page offers you to review this book.</b></p>
+</div>
+
+<div class="container">
+    <div class="reviews">
+    {{message}}
+    <ul>
+    {% for review in reviews %}
+        <li style="font-size:20px"><b><u>{{review.username}}</u></b></li>
+        <p>Rates the book as<b> {{review.rating}}</b> out of 5</p>
+        <p>And thinks...<b><q>{{review.review}}</q></b></p>
+    {% else %}
+        no reviews
+    {% endfor %}
+    </ul>
+    </div>
+</div>
+<div class="logoutbar">
+    <a href="{{ url_for('logout') }}"><input type="button" style="background-color:#F76120;height:35px" class="bt btn-info" value="Logout"></a>
+</div>
+</body>
+</html>

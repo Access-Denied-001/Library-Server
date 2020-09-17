@@ -8,7 +8,7 @@ import requests
 
 app = Flask(__name__)
 app.config['JSON_SORT_KEYS'] = False
-app.secret_key = 'fuckallinthepussy'
+app.secret_key = 'Secretkey'
 bcrypt = Bcrypt(app)
 
 # Configure session to use filesystem
@@ -18,8 +18,7 @@ Session(app)
 
 # Set up database
 engine = create_engine(
-    "postgres://nnktecvpjegvim:2f055e202a55d4207b0d9d694a3d98651aa9a96227a2692d0a4b9ff2680bf3e8@ec2-34-233-226-84"
-    ".compute-1.amazonaws.com:5432/db5ar3itlbrsdh")
+    "postgres://jboqoljyxnfxyr:12f51c7443e256dc9df95404a8ceac0b56aa156c9455a599e1273f152ff31b47@ec2-52-0-155-79.compute-1.amazonaws.com:5432/diehcu9kc9u7v")
 db = scoped_session(sessionmaker(bind=engine))
 
 

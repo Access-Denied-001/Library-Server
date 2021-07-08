@@ -18,7 +18,8 @@ Session(app)
 
 # Set up database
 engine = create_engine(
-    "postgres://jboqoljyxnfxyr:12f51c7443e256dc9df95404a8ceac0b56aa156c9455a599e1273f152ff31b47@ec2-52-0-155-79.compute-1.amazonaws.com:5432/diehcu9kc9u7v")
+    "postgresql://xjlxshxuakpech:ddf775f0c9915886bff67a43ecba785c78dc9f46e6ddb3645474d7759de9f62e@ec2-3-214-136-47"
+    ".compute-1.amazonaws.com:5432/d9nr10ubldfvmp")
 db = scoped_session(sessionmaker(bind=engine))
 
 
@@ -57,7 +58,7 @@ def userpage():
         if user is None:
             return render_template("login.html", message="No user with that username found!")
 
-        elif bcrypt.check_password_hash(user.passwordhash, password) is False:
+        elif bcrypt.check_password_hash(user.password, password) is False:
             return render_template("login.html", message="Password entered is incorrect")
 
         else:
@@ -85,7 +86,7 @@ def loginredirect():
         else:
             passwordstored = bcrypt.generate_password_hash(password).decode('utf-8')
             db.execute(
-                f"INSERT INTO users (username,passwordhash,email) VALUES ('{username}','{passwordstored}','{mail}')")
+                f"INSERT INTO users (username,password,email) VALUES ('{username}','{passwordstored}','{mail}')")
             db.commit()
             return render_template("login.html", message="Signup successful,You can login now!!! ")
 
@@ -236,9 +237,12 @@ def api(isbn):
 @app.errorhandler(404)
 def error(e):
     return render_template("error.html", message="Looks like you have requested something wrong!!")
+
+
 @app.errorhandler
 def error1(e):
     return "invalid isbn "
+
 
 if __name__ == "__main__":
     app.run(debug=True, port=5432)

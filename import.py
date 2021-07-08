@@ -3,8 +3,8 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
 from models import *
 
-engine = create_engine(
-    "postgres://jboqoljyxnfxyr:12f51c7443e256dc9df95404a8ceac0b56aa156c9455a599e1273f152ff31b47@ec2-52-0-155-79.compute-1.amazonaws.com:5432/diehcu9kc9u7vh")
+engine = create_engine("postgres://xjlxshxuakpech:ddf775f0c9915886bff67a43ecba785c78dc9f46e6ddb3645474d7759de9f62e"
+                       "@ec2-3-214-136-47.compute-1.amazonaws.com:5432/d9nr10ubldfvmp")
 db = scoped_session(sessionmaker(bind=engine))
 
 
